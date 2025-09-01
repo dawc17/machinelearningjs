@@ -3,7 +3,7 @@ let faceMesh;
 
 let video;
 
-let faceOptions = { maxFaces: 1, refineLandmarks: false, flipped: true };
+let faceOptions = { maxFaces: 2, refineLandmarks: false, flipped: true };
 let faces = [];
 let connectionsFace;
 
@@ -35,15 +35,15 @@ function gotHands(results) {
 }
 
 function draw() {
-    background(0);
-    //image(video, 0, 0, width, height);
+    background(30);
+    //image(video, 0, 0, width, height); // uncomment to show video feed
     for (let i = 0; i < faces.length; i++) {
         let face = faces[i];
         for (let j = 0; j < face.keypoints.length; j++) {
             let keypoint = face.keypoints[j];
             fill(0, 255, 0);
             noStroke();
-            circle(keypoint.x, keypoint.y, 5);
+            circle(keypoint.x, keypoint.y, 2);
         }
     }
 
@@ -52,7 +52,7 @@ function draw() {
         // Draw skeletal connections first so keypoint circles render on top
         if (connectionsHand && connectionsHand.length && hand.keypoints && hand.keypoints.length) {
             stroke(0, 255, 0);
-            strokeWeight(2);
+            strokeWeight(1);
             noFill();
             for (let c = 0; c < connectionsHand.length; c++) {
                 const [a, b] = connectionsHand[c];
@@ -67,7 +67,7 @@ function draw() {
             let keypoint = hand.keypoints[j];
             fill(0, 255, 0);
             noStroke();
-            circle(keypoint.x, keypoint.y, 10);
+            circle(keypoint.x, keypoint.y, 2);
         }
     }
 }
